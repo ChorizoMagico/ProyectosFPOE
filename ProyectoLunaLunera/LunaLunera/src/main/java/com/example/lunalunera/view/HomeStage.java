@@ -9,12 +9,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 /**
  * Main class from the view, which extends the Stage class
@@ -27,6 +31,7 @@ public class HomeStage extends Stage {
     private TextField secretWordTextField;
     private Button playButton;
     private Label errorMessage;
+    private ImageView logoImageView;
     private HomeController homeController;
 
     /**
@@ -61,7 +66,16 @@ public class HomeStage extends Stage {
     private void showHome() {
         Label titleLabel = new Label("Digite la palabra secreta: ");
         titleLabel.setTextFill(Color.CRIMSON);
-        titleLabel.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.ITALIC, 16));
+        titleLabel.setFont(Font.font("Dancing Script", FontWeight.NORMAL, FontPosture.ITALIC, 20));
+
+        logoImageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResource("/com/example/lunalunera/logo.png")).toExternalForm()));
+        logoImageView.setFitWidth(1000);
+        logoImageView.setFitHeight(500);
+        Rectangle clip = new Rectangle(logoImageView.getFitWidth(), logoImageView.getFitHeight());
+        clip.setArcWidth(50);
+        clip.setArcHeight(50);
+
+        logoImageView.setClip(clip);
 
         secretWordTextField = new TextField();
         secretWordTextField.setMaxWidth(200);
@@ -83,8 +97,9 @@ public class HomeStage extends Stage {
         errorMessage.setTextFill(Color.BLACK);
         errorMessage.setWrapText(true);
 
+        root.setBackground(new Background(new BackgroundFill(Color.web("#FADCD9"), CornerRadii.EMPTY, Insets.EMPTY)));
 
-        root.getChildren().addAll(titleLabel, secretWordTextField, playButton, errorMessage);
+        root.getChildren().addAll(logoImageView, titleLabel, secretWordTextField, playButton, errorMessage);
     }
 
     /**

@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -28,6 +29,9 @@ import java.util.Objects;
 public class GameStage extends Stage {
     private Scene scene;
     private VBox root;
+    private HBox moonPanel;
+    private VBox moonStatus;
+    private ImageView[] moonLives;
     private SecretWord secretWord;
     private TextField[] wordTextField;
     private Label counterFailedAttempts;
@@ -69,7 +73,39 @@ public class GameStage extends Stage {
      * Method which initializes the gadgets of the visual interface
      */
     private void showGame(){
+
+        moonPanel = new HBox();
+        moonPanel.setAlignment(Pos.CENTER);
+        moonPanel.setSpacing(10);
+
+        moonStatus = new VBox();
+        moonStatus.setAlignment(Pos.CENTER);
+        moonStatus.setSpacing(10);
+
+        moonLives = new ImageView[8];
+        for(int i = 0; i < 8; i++){
+            moonLives[i] = new ImageView(new Image(Objects.requireNonNull(getClass().getResource("/com/example/lunalunera/lives.png")).toExternalForm()));
+            moonLives[i].setFitWidth(50);
+            moonLives[i].setFitHeight(50);
+            moonLives[i].setPreserveRatio(true);
+            Rectangle clip = new Rectangle(moonLives[i].getFitWidth(), moonLives[i].getFitHeight());
+            clip.setArcWidth(5);
+            clip.setArcHeight(5);
+
+            moonLives[i].setClip(clip);
+            moonStatus.getChildren().add(moonLives[i]);
+        }
+
         moonImageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResource("/com/example/lunalunera/lunainicio.png")).toExternalForm()));
+        moonImageView.setFitWidth(300);
+        moonImageView.setFitHeight(300);
+        Rectangle clip = new Rectangle(moonImageView.getFitWidth(), moonImageView.getFitHeight());
+        clip.setArcWidth(25);
+        clip.setArcHeight(25);
+
+        moonImageView.setClip(clip);
+
+        moonPanel.getChildren().addAll(moonImageView, moonStatus);
 
         counterFailedAttempts = new Label("Intentos fallidos: 0");
         counterFailedAttempts.setTextFill(Color.CRIMSON);
@@ -89,7 +125,8 @@ public class GameStage extends Stage {
         helpButton.setFont(Font.font("Verdana", 14));
         helpButton.setCursor(Cursor.HAND);
 
-        root.getChildren().addAll(moonImageView, counterFailedAttempts, helpButton, counterHelp);
+        root.setBackground(new Background(new BackgroundFill(Color.web("#D8A7D3"), CornerRadii.EMPTY, Insets.EMPTY)));
+        root.getChildren().addAll(moonPanel, counterFailedAttempts, helpButton, counterHelp);
     }
 
     /**
@@ -118,6 +155,6 @@ public class GameStage extends Stage {
      * Method which initialize the gameController
      */
     public void initController(){
-        gameController = new GameController(moonImageView, secretWord, wordTextField, counterFailedAttempts, helpButton, counterHelp);
+        gameController = new GameController(moonImageView, moonLives, secretWord, wordTextField, counterFailedAttempts, helpButton, counterHelp);
     }
 }

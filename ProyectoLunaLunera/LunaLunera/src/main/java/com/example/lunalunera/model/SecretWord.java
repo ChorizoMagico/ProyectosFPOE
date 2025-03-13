@@ -51,14 +51,6 @@ public class SecretWord extends SecretWordAdapter {
         }
 
         /**
-         * Get method which returns the array of booleans
-         * @return an array with all the guessed and unguessed letters
-         */
-        public boolean[] getBinaryWord(){
-            return binaryWord;
-        }
-
-        /**
          * Get method which returns
          * @return int which represents the failed attempts by the user
          */
