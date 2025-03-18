@@ -108,20 +108,20 @@ public class GameStage extends Stage {
         moonPanel.getChildren().addAll(moonImageView, moonStatus);
 
         counterFailedAttempts = new Label("Intentos fallidos: 0");
-        counterFailedAttempts.setTextFill(Color.CRIMSON);
+        counterFailedAttempts.setTextFill(Color.web("#EB638B"));
         counterFailedAttempts.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.ITALIC, 16));
 
         counterHelp = new Label("Ayudas disponibles: 4");
-        counterHelp.setTextFill(Color.GREENYELLOW);
+        counterHelp.setTextFill(Color.web("#C563EB"));
         counterHelp.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.ITALIC, 16));
 
         helpButton = new Button("Ayuda");
         helpButton.setBackground(new Background(new BackgroundFill(
-                Color.web("#00FFFF80"),
+                Color.web("#824C71"),
                 new CornerRadii(5),
                 Insets.EMPTY
         )));
-        helpButton.setTextFill(Color.BLACK);
+        helpButton.setTextFill(Color.web("#FCEFF9"));
         helpButton.setFont(Font.font("Verdana", 14));
         helpButton.setCursor(Cursor.HAND);
 

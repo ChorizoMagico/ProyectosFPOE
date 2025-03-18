@@ -65,7 +65,7 @@ public class HomeStage extends Stage {
      */
     private void showHome() {
         Label titleLabel = new Label("Digite la palabra secreta: ");
-        titleLabel.setTextFill(Color.CRIMSON);
+        titleLabel.setTextFill(Color.web("#EB9D63"));
         titleLabel.setFont(Font.font("Dancing Script", FontWeight.NORMAL, FontPosture.ITALIC, 20));
 
         logoImageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResource("/com/example/lunalunera/logo.png")).toExternalForm()));
@@ -84,17 +84,17 @@ public class HomeStage extends Stage {
 
         playButton = new Button("Jugar");
         playButton.setBackground(new Background(new BackgroundFill(
-                Color.web("#00FFFF80"),
+                Color.web("#D97B66"),
                 new CornerRadii(5),
                 Insets.EMPTY
                 )));
-        playButton.setTextFill(Color.BLACK);
+        playButton.setTextFill(Color.web("#FFF5E4"));
         playButton.setFont(Font.font("Verdana", 14));
         playButton.setCursor(Cursor.HAND);
 
         errorMessage = new Label("Palabra no ingresada");
         errorMessage.setFont(Font.font(14));
-        errorMessage.setTextFill(Color.BLACK);
+        errorMessage.setTextFill(Color.web("#EB638D"));
         errorMessage.setWrapText(true);
 
         root.setBackground(new Background(new BackgroundFill(Color.web("#FADCD9"), CornerRadii.EMPTY, Insets.EMPTY)));
